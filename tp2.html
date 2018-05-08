@@ -1,0 +1,51 @@
+
+<!-- 1- Tener un tablero de 12 fichas (6 pares)
+2- Deben acomodarse las fichas de forma aleatoria, cada vez que se inicie un nuevo juego.
+3- Al completar todos los pares mostrar un mensaje de ganó.
+4- Permitir ingresar el nombre del jugador al iniciar el juego
+5- Tener 24 oportunidades, si no descubre todo el tablero en esa cantidad perderá. -->
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="tp2.css">
+  </head>
+  <body>
+
+    <div class="main-container">
+
+      <div class="menu-container">
+
+        <div class="nombre-container">
+          <div class='header'>
+            <div class='start'>Empezar</div>
+            <div class='moves'>Jugadas: <span class="c_move">0</span></div>
+          </div>
+          <div class="nombre-ocultar">¡Bienvenidx! ¿Cuál es tu nombre?
+            <input type="text" id="name" value=""></input>
+            <button id="namebutton" onclick="enviar()">Enviar</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="container">
+        </div>
+
+        <div class="board">
+          <p class="greet">Felicitaciones!</p>
+          <p class = 'scr_move'>Jugadas: <span class='scr_moves'>  00</span></p>
+          <button type="button" class='again'>Jugar de nuevo</button>
+        </div>
+
+    </div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js'></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <script src="tp2.js"></script>
+  </body>
+</html>
