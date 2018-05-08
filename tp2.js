@@ -11,6 +11,11 @@ function enviar() {
   $('.start').show();
 }
 
+$(document).on("keypress", '#name', function(e) {
+  if (e.keyCode == 13) {
+    enviar()
+  }
+});
 
 
 var img = [
