@@ -1,7 +1,8 @@
 
 $('.header .moves').hide();
 $('.start').hide();
-
+$('.ganador').hide();
+$('.perdedor').hide();
 
 
 function enviar() {
@@ -30,140 +31,144 @@ var img = [
 var	total = 0,
 	  moves = 0,
 	  count = 1,
-	  first_card = null,
-  	secn_card = null ;
-
-var stop_fa = false,
-	  stop_fc = true;
-
-var card_id = 0
+	  fichauno = null,
+  	fichados = null,
+	  stopclick = true;
+    ficha_id = 0
 
  for (i = 0; i < 3; i++ ) {
 	for (j = 0; j < 4; j++) {
-		$('.container').append('<div class="card" data-id="' + card_id + '"><div class="front face"></div><div data-bid="0" class="back face"></div></div>')
-		card_id++;
+		$('.container').append('<div class="ficha" data-id="' + ficha_id + '"><div class="logo cara"></div><div data-bid="0" class="back cara"></div></div>')
+		ficha_id++;
 		}
 	}
 
-$('.start').click(function(){
+function startgame() {
 	total = 0;
-	stop_fa = true;
-	stop_fc = false;
+	stopclick = false;
   $('.header .moves').show();
-  $('.card').removeClass('flip');
+  $('.ficha').removeClass('flip');
 	$('.start').hide();
-	randomIMG();
-})
+  shuffle();
+  clic();
 
-$('.again').click(function() {
-    location.reload();
-});
+  function shuffle(){
+  	var c_array = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6];
+  	var c_length = c_array.length;
 
-$('.board').hide();
-randomIMG();
-flip_auto();
-flip_click();
+  	$('.ficha').each(function(){
+  		var r_id = Math.floor(Math.random() * (c_length - 1));
+  		var temp = c_array[r_id];
+  		c_array[r_id]= c_array[c_length - 1];
+  		c_array[c_length - 1] = temp;
+  		c_length--
 
-function randomIMG(){
-	var c_array = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6];
-	var c_length = c_array.length;
+  		$(this).find('.back').css({
+  			'background-image' : 'url('+img[temp-1]+')',
+  		})
 
-	$('.card').each(function(){
-		var r_id = Math.floor(Math.random() * (c_length - 1));
-		var temp = c_array[r_id];
-		c_array[r_id]= c_array[c_length - 1];
-		c_array[c_length - 1] = temp;
-		c_length--
+  		$(this).find('.back').attr('data-bid',temp)
+  	})
 
-		$(this).find('.back').css({
-			'background-image' : 'url('+img[temp-1]+')',
-		})
-
-		$(this).find('.back').attr('data-bid',temp)
-	})
-
-	return 0;
-}
-
-function flip_click(){
-	 total = 0;
-	 moves = 0;
-	 count = 1;
-	 var i = 0
-	 first_card = null;
-	 secn_card = null ;
-
-	$('.card').find('.front').click(function(){
-		if (stop_fc == true) {
-			return 0;
-		}
-
-	$(this).parent('.card').toggleClass('flip');
-
-
-	if (count == 1) {
-		first_card = $(this).parent('.card').find('.back').attr('data-bid');
-
-	}
-	else if (count == 2) {
-		secn_card = $(this).parent('.card').find('.back').attr('data-bid');
-    moves++;
-    $('.c_move').html(moves);
-	}
-
-	if (first_card == secn_card) {
-
-		$('[data-bid="'+first_card+'"]').parent('.card').addClass('fliped')
-		total++;
-		if (total == 6) {
-		    stop_fc = reset(moves);
-		    stop_fc = true;
-		    moves = 0;
-		}
-
-	}
-
-	if (stop_fc) {
-		return
-	}
-
-count++
-		if (count > 2) {
-			first_card = null;
-			secn_card = null;
-			count = 1;
-		    setTimeout(function(){
-			$('.card').removeClass('flip');
-
-		},400)
-	}
-	});
-}
-
-
-function flip_auto(time){
-
-  setTimeout(function(){
-  	if (stop_fa) {
-	return;
-	}
-
-	var r_ran = randomNum(1,24)
-	$('[data-id="'+r_ran+'"]').toggleClass('flip')
-
-	var newTime = randomNum(500,1000);
-	flip_auto(newTime)
-  }, time)
-}
-
- function randomNum( min, max ) {
-    return Math.floor(Math.random() * ((max - min)+1) + min);
   }
 
+  function clic(){
+  	 total = 0;
+  	 moves = 0;
+  	 count = 1;
+  	 var i = 0
+  	 fichauno = null;
+  	 fichados = null ;
+
+  	$('.ficha').find('.logo').click(function(){
+  		if (stopclick == true) {
+  			return 0;
+  		}
+
+  	$(this).parent('.ficha').toggleClass('flip');
 
 
-function reset(moves) {
-  $('.board').show()
-  $('.board').find('.scr_moves').html(moves);
-  return true;
+  	if (count == 1) {
+  		fichauno = $(this).parent('.ficha').find('.back').attr('data-bid');
+
+  	}
+  	else if (count == 2) {
+  		fichados = $(this).parent('.ficha').find('.back').attr('data-bid');
+      moves++;
+      $('.c_move').html(moves);
+  	}
+
+  	if (fichauno == fichados) {
+
+  		$('[data-bid="'+fichauno+'"]').parent('.ficha').addClass('fliped')
+  		total++;
+  		if (total == 6) {
+  		    stopclick = reset(moves);
+  		    stopclick = true;
+  		    moves = 0;
+  		}
+
+  	}
+
+
+  count++
+  		if (count > 2) {
+  			fichauno = null;
+  			fichados = null;
+  			count = 1;
+  		    setTimeout(function(){
+  			$('.ficha').removeClass('flip');
+
+  		},600)
+
+  	}
+
+    if (moves == 24) {
+      endgame();
+
+    }
+  	});
+  }
+
+  function reset(moves) {
+    $('.ganador').find('.scr_moves').html(moves);
+    $('.ganador').show(600)
+  }
+
+  function endgame() {
+    stopclick = true;
+    $('.perdedor').find('.scr_moves').html(moves);
+    $('.perdedor').show(600);
+  }
 }
+
+
+
+
+$('.again').click(function(){
+
+$('.c_move').html(0);
+
+  $('.perdedor').hide();
+  $('.ganador').hide()
+  $('.container').empty();
+
+
+  total = 0,
+  	  moves = 0,
+  	  count = 1,
+  	  fichauno = null,
+    	fichados = null,
+  	  stopclick = true;
+      ficha_id = 0
+
+   for (i = 0; i < 3; i++ ) {
+  	for (j = 0; j < 4; j++) {
+  		$('.container').append('<div class="ficha" data-id="' + ficha_id + '"><div class="logo cara"></div><div data-bid="0" class="back cara"></div></div>')
+  		ficha_id++;
+  		}
+  	}
+
+  startgame()
+
+})
