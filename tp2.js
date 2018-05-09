@@ -20,12 +20,12 @@ $(document).on("keypress", '#name', function(e) {
 
 
 var img = [
+  'ride.jpg',
   'curie.jpg',
-  'carson.jpg',
-  'franklin.jpg',
-  'goodall.jpg',
   'hopper.jpg',
-  'ride.jpg'
+  'carson.jpg',
+  'goodall.jpg',
+  'franklin.jpg'
  ]
 
 var	total = 0,
@@ -78,49 +78,47 @@ function startgame() {
   	 count = 1;
   	 var i = 0
   	 fichauno = null;
-  	 fichados = null ;
+  	 fichados = null;
 
   	$('.ficha').find('.logo').click(function(){
-  		if (stopclick == true) {
-  			return 0;
-  		}
 
   	$(this).parent('.ficha').toggleClass('flip');
 
-
   	if (count == 1) {
+      console.log("uno");
   		fichauno = $(this).parent('.ficha').find('.back').attr('data-bid');
 
   	}
   	else if (count == 2) {
+      console.log("dos");
   		fichados = $(this).parent('.ficha').find('.back').attr('data-bid');
       moves++;
       $('.c_move').html(moves);
   	}
 
   	if (fichauno == fichados) {
-
   		$('[data-bid="'+fichauno+'"]').parent('.ficha').addClass('fliped')
   		total++;
-  		if (total == 6) {
+
+      if (total == 6) {
   		    stopclick = reset(moves);
   		    stopclick = true;
   		    moves = 0;
   		}
-
   	}
 
-
   count++
+
   		if (count > 2) {
-  			fichauno = null;
+        console.log("tres");
+        fichauno = null;
   			fichados = null;
-  			count = 1;
-  		    setTimeout(function(){
-  			$('.ficha').removeClass('flip');
 
-  		},600)
+        setTimeout(function(){
+          $('.ficha').removeClass('flip');
+        }, 600)
 
+        count = 1;
   	}
 
     if (moves == 24) {
@@ -142,9 +140,6 @@ function startgame() {
   }
 }
 
-
-
-
 $('.again').click(function(){
 
 $('.c_move').html(0);
@@ -154,7 +149,7 @@ $('.c_move').html(0);
   $('.container').empty();
 
 
-  total = 0,
+      total = 0,
   	  moves = 0,
   	  count = 1,
   	  fichauno = null,
