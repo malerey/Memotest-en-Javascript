@@ -148,3 +148,7 @@ body {
   -webkit-transform: scale(1.1);
   background: #882b4b;
   }
+
+.disable {
+	pointer-events: none;
+}

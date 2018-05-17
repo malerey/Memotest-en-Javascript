@@ -38,7 +38,8 @@ var	total = 0,
 
  for (i = 0; i < 3; i++ ) {
 	for (j = 0; j < 4; j++) {
-		$('.container').append('<div class="ficha" data-id="' + ficha_id + '"><div class="logo cara"></div><div data-bid="0" class="back cara"></div></div>')
+		$('.container').append('<div class="ficha" data-id="' + ficha_id +
+     '"><div class="logo cara"></div><div data-bid="0" class="back cara"></div></div>')
 		ficha_id++;
 		}
 	}
@@ -80,6 +81,8 @@ function startgame() {
   	 fichauno = null;
   	 fichados = null;
 
+
+
   	$('.ficha').find('.logo').click(function(){
 
   	$(this).parent('.ficha').toggleClass('flip');
@@ -87,6 +90,7 @@ function startgame() {
   	if (count == 1) {
       console.log("uno");
   		fichauno = $(this).parent('.ficha').find('.back').attr('data-bid');
+      console.log("total", total);
 
   	}
   	else if (count == 2) {
@@ -94,6 +98,7 @@ function startgame() {
   		fichados = $(this).parent('.ficha').find('.back').attr('data-bid');
       moves++;
       $('.c_move').html(moves);
+      console.log("total", total);
   	}
 
   	if (fichauno == fichados) {
@@ -109,17 +114,20 @@ function startgame() {
 
   count++
 
-  		if (count > 2) {
-        console.log("tres");
-        fichauno = null;
-  			fichados = null;
+  if (count > 2) {
+    $('.container').addClass("disable")
+    console.log("tres");
+    fichauno = null;
+    fichados = null;
 
-        setTimeout(function(){
-          $('.ficha').removeClass('flip');
-        }, 600)
+    setTimeout(function(){
+      $('.ficha').removeClass('flip');
+      $('.container').removeClass("disable")
+    }, 600)
 
-        count = 1;
-  	}
+      count = 1;
+
+}
 
     if (moves == 24) {
       endgame();
