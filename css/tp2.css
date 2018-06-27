@@ -77,7 +77,7 @@ body {
 }
 
 .container .ficha .logo {
-	background: url(adalogo.png);
+	background: url(../images/adalogo.png);
 	background-repeat: no-repeat;
 	background-size: 100%;
 	z-index: 1;

@@ -19,13 +19,13 @@ $(document).on("keypress", '#name', function(e) {
 });
 
 
-var img = [
-  'ride.jpg',
-  'curie.jpg',
-  'hopper.jpg',
-  'carson.jpg',
-  'goodall.jpg',
-  'franklin.jpg'
+const img = [
+  'images/ride.jpg',
+  'images/curie.jpg',
+  'images/hopper.jpg',
+  'images/carson.jpg',
+  'images/goodall.jpg',
+  'images/franklin.jpg'
  ]
 
 var	total = 0,
