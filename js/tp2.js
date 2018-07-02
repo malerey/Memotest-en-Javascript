@@ -28,13 +28,17 @@ const img = [
   'images/franklin.jpg'
  ]
 
-var	total = 0,
-	  moves = 0,
-	  count = 1,
+var	totaln = 0,
+	  movesn = 0,
+	  countn = 1,
 	  fichauno = null,
   	fichados = null,
 	  stopclick = true;
-    ficha_id = 0
+    ficha_id = 0;
+
+var total = totaln,
+    moves = movesn,
+    count = countn;
 
  for (i = 0; i < 3; i++ ) {
 	for (j = 0; j < 4; j++) {
@@ -45,7 +49,6 @@ var	total = 0,
 	}
 
 function startgame() {
-	total = 0;
 	stopclick = false;
   $('.header .moves').show();
   $('.ficha').removeClass('flip');
@@ -74,31 +77,21 @@ function startgame() {
   }
 
   function clic(){
-  	 total = 0;
-  	 moves = 0;
-  	 count = 1;
-  	 var i = 0
   	 fichauno = null;
   	 fichados = null;
-
-
 
   	$('.ficha').find('.logo').click(function(){
 
   	$(this).parent('.ficha').toggleClass('flip');
 
   	if (count == 1) {
-      console.log("uno");
   		fichauno = $(this).parent('.ficha').find('.back').attr('data-bid');
-      console.log("total", total);
 
   	}
   	else if (count == 2) {
-      console.log("dos");
   		fichados = $(this).parent('.ficha').find('.back').attr('data-bid');
       moves++;
       $('.c_move').html(moves);
-      console.log("total", total);
   	}
 
   	if (fichauno == fichados) {
@@ -116,7 +109,6 @@ function startgame() {
 
   if (count > 2) {
     $('.container').addClass("disable")
-    console.log("tres");
     fichauno = null;
     fichados = null;
 
@@ -156,10 +148,6 @@ $('.c_move').html(0);
   $('.ganador').hide()
   $('.container').empty();
 
-
-      total = 0,
-  	  moves = 0,
-  	  count = 1,
   	  fichauno = null,
     	fichados = null,
   	  stopclick = true;
