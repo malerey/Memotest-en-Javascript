@@ -1,4 +1,6 @@
 # tp2
 Trabajo Practico 2 del bootcamp Ada 
 
-Se puede ver en https://malerey.github.io/tp2/tp2.html
+The task was to create a memory game using only Javascript, that counts the number of plays, remembers the user's name and finishes the game if the player takes over 24 plays. 
+
+It can be seen at https://malerey.github.io/Memotest-en-Javascript/tp2.html
